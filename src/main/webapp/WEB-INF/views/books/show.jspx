@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:joda="http://www.joda.org/joda/time/tags"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	version="2.0">
+	
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	
+	<spring:message code="label_book_info" var="labelBookInfo" />
+	<spring:message code="label_book_name" var="labelBookName" />
+	<spring:message code="label_book_publisher" var="labelBookPublisher" />
+	<spring:message code="label_date_of_publication" var="labelDateOfPublication" />
+	<spring:message code="label_book_description" var="labelBookDescription" />
+	<spring:message code="label_book_update" var="labelBookUpdate" />
+	<spring:message code="label_book_delete" var="labelBookDelete" />
+	<spring:message code="date_format_pattern" var="dateFormatPattern" />
+	<spring:message code="label_book_photo" var="labelBookPhoto"/>
+	
+	<spring:url value="/books/photo" var="bookPhotoUrl"/>
+	<spring:url value="/books" var="editBookUrl" />
+	<spring:url value="/books/delete" var="deleteBookUrl" />
+	
+	<!-- Create jQueryUI Edit/Delete Buttons -->
+	<script>
+  	$(function() {
+	    $("#editBook")
+      	.button()
+      	.click(function() {
+      	   window.location = "${editBookUrl}/${book.id}?form";
+      	});
+	    
+	    $("#deleteBook")
+      	.button()
+      	.click(function() {
+      	   window.location = "${deleteBookUrl}/${book.id}";
+      	});
+  	});
+  	</script>
+	
+	<h1>${labelBookInfo}</h1>
+	
+	<div id="bookInfo">
+
+		<c:if test="${not empty message}">
+			<div id="message" class="${message.type}">${message.message}</div>
+		</c:if>
+		<table>
+			<tr>
+				<td>${labelBookName}</td>
+				<td>${book.name}</td>
+			</tr>
+			<tr>
+				<td>${labelBookPublisher}</td>
+				<td>${book.publisher}</td>
+			</tr>
+			<tr>
+				<td>${labelDateOfPublication}</td>
+				<td><joda:format value="${book.dateOfPublication}"
+						pattern="${dateFormatPattern}" /></td>
+			</tr>
+			<tr>
+				<td>${labelBookDescription}</td>
+				<td>${book.description}</td>
+			</tr>
+			<tr><!-- File Upload area -->
+				<td>${labelBookPhoto}</td>
+				<td><img src="${bookPhotoUrl}/${book.id}"></img></td>
+			</tr>
+		</table>
+
+		<sec:authorize access="hasRole('ROLE_USER')">
+			<a id="editBook" href="${editBookUrl}/${book.id}?form">${labelBookUpdate}</a>
+			<a id="deleteBook" href="${deleteBookUrl}/${book.id}">${labelBookDelete}</a>
+		</sec:authorize>
+	</div>
+</div>
