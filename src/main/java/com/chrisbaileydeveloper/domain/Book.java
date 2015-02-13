@@ -3,6 +3,7 @@ package com.chrisbaileydeveloper.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -10,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
@@ -28,6 +31,7 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private int version;
+	private Contact contact;
 	private String name;
 	private String publisher;
 	private DateTime dateOfPublication;
@@ -55,6 +59,16 @@ public class Book implements Serializable {
 		this.version = version;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CONTACT_ID", nullable=true)
+	public Contact getContact() {
+		return this.contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+	
 	@NotEmpty(message = "{validation.name.NotEmpty.message}")
 	@Size(min = 5, max = 100, message = "{validation.name.Size.message}")
 	@Column(name = "NAME")
@@ -118,8 +132,12 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", version=" + version + ", name=" + name
-				+ ", publisher=" + publisher + ", dateOfPublication="
-				+ dateOfPublication + ", description=" + description;
+		return "Book [id=" + id + ", version=" + version + ", contact="
+				+ contact + ", name=" + name + ", publisher=" + publisher
+				+ ", dateOfPublication=" + dateOfPublication + ", description="
+				+ description;
 	}
+
+
+	
 }
