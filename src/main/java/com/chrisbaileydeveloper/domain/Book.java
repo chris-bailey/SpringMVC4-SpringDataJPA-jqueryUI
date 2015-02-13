@@ -3,7 +3,6 @@ package com.chrisbaileydeveloper.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
