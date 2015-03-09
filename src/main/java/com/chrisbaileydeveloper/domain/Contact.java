@@ -25,7 +25,7 @@ public class Contact implements Serializable {
 	private String lastName;
 	private Set<Book> books = new HashSet<Book>();
 
-	public Contact() {
+	public Contact() { 
 	}
 
 	public Contact(String firstName, String lastName) {
