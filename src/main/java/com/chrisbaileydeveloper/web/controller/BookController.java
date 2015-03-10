@@ -30,6 +30,67 @@ import com.chrisbaileydeveloper.service.BookService;
 import com.chrisbaileydeveloper.web.form.Message;
 import com.chrisbaileydeveloper.web.util.UrlUtil;
 
+/**
+ * RESTful-WS Controller <br>
+ * 
+ * <table border=1 summary="Restful-WS">
+ * <tr>
+ * <td>URL</td>
+ * <td>HTTP Method</td>
+ * <td>Controller method</td>
+ * <td>Description</td>
+ * </tr>
+ * <tr>
+ * <td>/books</td>
+ * <td>GET</td>
+ * <td>list()</td>
+ * <td>List all books.</td>
+ * </tr>
+ * <tr>
+ * <td>/books/{id}</td>
+ * <td>GET</td>
+ * <td>show()</td>
+ * <td>Retrieve single book with specified id.</td>
+ * </tr>
+ * <tr>
+ * <td>/books/{id}?form</td>
+ * <td>GET</td>
+ * <td>updateForm()</td>
+ * <td>Display edit form for updating existing book.</td>
+ * </tr>
+ * <tr>
+ * <td>/books/{id}?form</td>
+ * <td>POST</td>
+ * <td>update()</td>
+ * <td>Update book with specified id.</td>
+ * </tr>
+ * <tr>
+ * <td>/books?form</td>
+ * <td>GET</td>
+ * <td>createForm()</td>
+ * <td>Display edit form for creation of new book.</td>
+ * </tr>
+ * <tr>
+ * <td>/books?form</td>
+ * <td>POST</td>
+ * <td>create()</td>
+ * <td>Users create a new book with the form.</td>
+ * </tr>
+ * <tr>
+ * <td>/books/photo/{id}</td>
+ * <td>GET</td>
+ * <td>downloadPhoto()</td>
+ * <td>Download the photo for a book.</td>
+ * </tr>
+ * <tr>
+ * <td>/books/delete/{id}</td>
+ * <td>GET</td>
+ * <td>delete()</td>
+ * <td>Delete book with specified id.</td>
+ * </tr>
+ * </table>
+ */
+
 @RequestMapping("/books")
 @Controller
 public class BookController {
@@ -42,6 +103,9 @@ public class BookController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * List all books.
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model uiModel) {
 		logger.info("Listing books");
@@ -54,6 +118,9 @@ public class BookController {
 		return "books/list";
 	}
 
+	/**
+	 * Retrieve the book with the specified id.
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") Long id, Model uiModel) {
 		logger.info("Listing book with id: " + id);
@@ -64,12 +131,18 @@ public class BookController {
 		return "books/show";
 	}
 
+	/**
+	 * Retrieve the book with the specified id for the update form.
+	 */
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Long id, Model uiModel) {
 		uiModel.addAttribute("book", bookService.findById(id));
 		return "books/update";
 	}
 
+	/**
+	 * Update the book with the specified id.
+	 */
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
 	public String update(@Valid Book book, @PathVariable("id") Long id,
 			BindingResult bindingResult, Model uiModel,
@@ -127,6 +200,9 @@ public class BookController {
 		return "books/create";
 	}
 
+	/**
+	 * Create a new book.
+	 */
 	@RequestMapping(params = "form", method = RequestMethod.POST)
 	public String create(@Valid Book book, BindingResult bindingResult,
 			Model uiModel, HttpServletRequest httpServletRequest,
@@ -173,6 +249,9 @@ public class BookController {
 						httpServletRequest);
 	}
 
+	/**
+	 * Returns the photo for the book with the specified id.
+	 */
 	@RequestMapping(value = "/photo/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public byte[] downloadPhoto(@PathVariable("id") Long id) {
@@ -187,22 +266,27 @@ public class BookController {
 		return book.getPhoto();
 	}
 
+	/**
+	 * Deletes the book with the specified id.
+	 */
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable Long id, Model uiModel, Locale locale) {
 		logger.info("Deleting book with id: " + id);
 		Book book = bookService.findById(id);
-		
-		if (book != null){
-		   bookService.delete(book);
-		   logger.info("Book deleted successfully");
-		
-		   uiModel.addAttribute("message",	new Message("success", messageSource.getMessage(
-						"book_delete_success", new Object[] {}, locale)));
+
+		if (book != null) {
+			bookService.delete(book);
+			logger.info("Book deleted successfully");
+
+			uiModel.addAttribute(
+					"message",
+					new Message("success", messageSource.getMessage(
+							"book_delete_success", new Object[] {}, locale)));
 		}
-		
+
 		List<Book> books = bookService.findAll();
 		uiModel.addAttribute("books", books);
-		
+
 		return "books/list";
 	}
 }
