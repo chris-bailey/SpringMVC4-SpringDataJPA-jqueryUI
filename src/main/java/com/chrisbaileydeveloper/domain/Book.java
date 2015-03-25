@@ -31,7 +31,6 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private int version;
-	private Contact contact;
 	private String name;
 	private String publisher;
 	private DateTime dateOfPublication;
@@ -59,16 +58,6 @@ public class Book implements Serializable {
 		this.version = version;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CONTACT_ID", nullable=true)
-	public Contact getContact() {
-		return this.contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
-	
 	@NotEmpty(message = "{validation.name.NotEmpty.message}")
 	@Size(min = 5, max = 100, message = "{validation.name.Size.message}")
 	@Column(name = "NAME")
@@ -132,12 +121,9 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", version=" + version + ", contact="
-				+ contact + ", name=" + name + ", publisher=" + publisher
-				+ ", dateOfPublication=" + dateOfPublication + ", description="
-				+ description;
+		return "Book [id=" + id + ", version=" + version + ", name=" + name
+				+ ", publisher=" + publisher + ", dateOfPublication="
+				+ dateOfPublication + ", description=" + description;
 	}
 
-
-	
 }

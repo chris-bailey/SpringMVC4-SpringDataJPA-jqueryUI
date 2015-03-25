@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.apress.prospring3">
+	<logger name="com.chrisbaileydeveloper">
 		<level value="info" />
 	</logger>
 	
