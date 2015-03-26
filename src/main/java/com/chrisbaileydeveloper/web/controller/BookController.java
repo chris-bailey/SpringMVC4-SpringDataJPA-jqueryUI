@@ -41,49 +41,49 @@ import com.chrisbaileydeveloper.web.util.UrlUtil;
  * <td>Description</td>
  * </tr>
  * <tr>
- * <td>/books</td>
+ * <td>/</td>
  * <td>GET</td>
  * <td>list()</td>
  * <td>List all books.</td>
  * </tr>
  * <tr>
- * <td>/books/{id}</td>
+ * <td>/{id}</td>
  * <td>GET</td>
  * <td>show()</td>
  * <td>Retrieve single book with specified id.</td>
  * </tr>
  * <tr>
- * <td>/books/{id}?form</td>
+ * <td>/{id}?form</td>
  * <td>GET</td>
  * <td>updateForm()</td>
  * <td>Display edit form for updating existing book.</td>
  * </tr>
  * <tr>
- * <td>/books/{id}?form</td>
+ * <td>/{id}?form</td>
  * <td>POST</td>
  * <td>update()</td>
  * <td>Update book with specified id.</td>
  * </tr>
  * <tr>
- * <td>/books?form</td>
+ * <td>/?form</td>
  * <td>GET</td>
  * <td>createForm()</td>
  * <td>Display edit form for creation of new book.</td>
  * </tr>
  * <tr>
- * <td>/books?form</td>
+ * <td>/?form</td>
  * <td>POST</td>
  * <td>create()</td>
  * <td>Users create a new book with the form.</td>
  * </tr>
  * <tr>
- * <td>/books/photo/{id}</td>
+ * <td>/photo/{id}</td>
  * <td>GET</td>
  * <td>downloadPhoto()</td>
  * <td>Download the photo for a book.</td>
  * </tr>
  * <tr>
- * <td>/books/delete/{id}</td>
+ * <td>/delete/{id}</td>
  * <td>GET</td>
  * <td>delete()</td>
  * <td>Delete book with specified id.</td>
@@ -91,7 +91,7 @@ import com.chrisbaileydeveloper.web.util.UrlUtil;
  * </table>
  */
 
-@RequestMapping("/books")
+@RequestMapping("/")
 @Controller
 public class BookController {
 
@@ -188,7 +188,7 @@ public class BookController {
 		}
 
 		bookService.save(book);
-		return "redirect:/books/"
+		return "redirect:/"
 				+ UrlUtil.encodeUrlPathSegment(book.getId().toString(),
 						httpServletRequest);
 	}
@@ -244,7 +244,7 @@ public class BookController {
 		}
 
 		bookService.save(book);
-		return "redirect:/books/"
+		return "redirect:/"
 				+ UrlUtil.encodeUrlPathSegment(book.getId().toString(),
 						httpServletRequest);
 	}

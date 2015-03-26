@@ -10,7 +10,7 @@
 	<spring:message code="label_book_name" var="labelBookName" />
 	<spring:message code="label_book_publisher" var="labelBookPublisher" />
 	<spring:message code="label_date_of_publication" var="labelDateOfPublication" />
-	<spring:url value="/books" var="showBookUrl" />
+	<spring:url value="/" var="showBookUrl" />
 
 	<c:if test="${not empty message}">
 		<div id="message" class="${message.type}">${message.message}</div>
@@ -30,7 +30,7 @@
 			<tbody>
 				<c:forEach items="${books}" var="book">
 					<tr>
-						<td><a href="${showBookUrl}/${book.id}">${book.name}</a></td>
+						<td><a href="${showBookUrl}${book.id}">${book.name}</a></td>
 						<td>${book.publisher}</td>
 						<td><joda:format value="${book.dateOfPublication}"
 								pattern="yyyy-MM-dd" /></td>

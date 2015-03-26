@@ -108,7 +108,7 @@ public class BookControllerTest {
 		String result = bookController.create(newBook, bindingResult, uiModel, httpServletRequest, redirectAttributes, locale, null);
 
 		assertNotNull(result);
-		assertEquals("redirect:/books/999", result);
+		assertEquals("redirect:/999", result);
 		assertEquals(2, books.size());
 	}
 }

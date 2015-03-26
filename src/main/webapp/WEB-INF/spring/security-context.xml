@@ -8,9 +8,9 @@
 		
 	<http use-expressions="true">
 		<intercept-url pattern='/*' access='permitAll' />
-		<form-login login-page="/books"
-			authentication-failure-url="/security/loginfail" default-target-url="/books" />
-		<logout logout-success-url="/books" />
+		<form-login login-page="/"
+			authentication-failure-url="/security/loginfail" default-target-url="/" />
+		<logout logout-success-url="/" />
 	</http>
 	
 	<authentication-manager>

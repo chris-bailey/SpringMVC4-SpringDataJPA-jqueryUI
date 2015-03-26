@@ -20,9 +20,9 @@
 	<spring:message code="date_format_pattern" var="dateFormatPattern" />
 	<spring:message code="label_book_photo" var="labelBookPhoto"/>
 	
-	<spring:url value="/books/photo" var="bookPhotoUrl"/>
-	<spring:url value="/books" var="editBookUrl" />
-	<spring:url value="/books/delete" var="deleteBookUrl" />
+	<spring:url value="/photo" var="bookPhotoUrl"/>
+	<spring:url value="/" var="editBookUrl" />
+	<spring:url value="/delete" var="deleteBookUrl" />
 	
 	<!-- Create jQueryUI Edit/Delete Buttons -->
 	<script>
@@ -30,7 +30,7 @@
 	    $("#editBook")
       	.button()
       	.click(function() {
-      	   window.location = "${editBookUrl}/${book.id}?form";
+      	   window.location = "${editBookUrl}${book.id}?form";
       	});
 	    
 	    $("#deleteBook")
@@ -73,7 +73,7 @@
 		</table>
 
 		<sec:authorize access="hasRole('ROLE_USER')">
-			<a id="editBook" href="${editBookUrl}/${book.id}?form">${labelBookUpdate}</a>
+			<a id="editBook" href="${editBookUrl}${book.id}?form">${labelBookUpdate}</a>
 			<a id="deleteBook" href="${deleteBookUrl}/${book.id}">${labelBookDelete}</a>
 		</sec:authorize>
 	</div>
