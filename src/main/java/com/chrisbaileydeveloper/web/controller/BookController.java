@@ -30,67 +30,6 @@ import com.chrisbaileydeveloper.service.BookService;
 import com.chrisbaileydeveloper.web.form.Message;
 import com.chrisbaileydeveloper.web.util.UrlUtil;
 
-/**
- * RESTful-WS Controller <br>
- * 
- * <table border=1 summary="Restful-WS">
- * <tr>
- * <td>URL</td>
- * <td>HTTP Method</td>
- * <td>Controller method</td>
- * <td>Description</td>
- * </tr>
- * <tr>
- * <td>/</td>
- * <td>GET</td>
- * <td>list()</td>
- * <td>List all books.</td>
- * </tr>
- * <tr>
- * <td>/{id}</td>
- * <td>GET</td>
- * <td>show()</td>
- * <td>Retrieve single book with specified id.</td>
- * </tr>
- * <tr>
- * <td>/{id}?form</td>
- * <td>GET</td>
- * <td>updateForm()</td>
- * <td>Display edit form for updating existing book.</td>
- * </tr>
- * <tr>
- * <td>/{id}?form</td>
- * <td>POST</td>
- * <td>update()</td>
- * <td>Update book with specified id.</td>
- * </tr>
- * <tr>
- * <td>/?form</td>
- * <td>GET</td>
- * <td>createForm()</td>
- * <td>Display edit form for creation of new book.</td>
- * </tr>
- * <tr>
- * <td>/?form</td>
- * <td>POST</td>
- * <td>create()</td>
- * <td>Users create a new book with the form.</td>
- * </tr>
- * <tr>
- * <td>/photo/{id}</td>
- * <td>GET</td>
- * <td>downloadPhoto()</td>
- * <td>Download the photo for a book.</td>
- * </tr>
- * <tr>
- * <td>/delete/{id}</td>
- * <td>GET</td>
- * <td>delete()</td>
- * <td>Delete book with specified id.</td>
- * </tr>
- * </table>
- */
-
 @RequestMapping("/")
 @Controller
 public class BookController {
