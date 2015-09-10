@@ -14,7 +14,10 @@ If interested, please see the [Spring MVC Demo Page](http://chrisbaileydeveloper
 3.	Open Eclipse in order to import the project.
 4.	File -> Import -> Maven -> **Existing Maven Projects** (Navigate to folder and import)  
 
-5.	Right click your project, click Run as -> **Run on server** (Supposing you already have a Tomcat server setup locally)
+5.	Right click your project, click Run as -> **Run on server** (Supposing you already have a Tomcat server setup locally)  
+
+6.  Navigate to the following URI to access the application:  **http://localhost:8080/springmvc-demo**
+
 
 ### Admin privileges ###
 The admin username and password is *admin/admin*.  
