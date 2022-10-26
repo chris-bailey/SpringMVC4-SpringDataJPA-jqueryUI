@@ -5,7 +5,7 @@ I have created a Spring MVC demo application to showcase the elegance and functi
 
 
 ## Steps to set up development environment in Eclipse ##
-1. **Download** or clone the project from GitHub.  
+1. Clone the project from GitHub.  
 2. Navigate to the project directory and run the following from the command line:
   
     `$ mvn package`
@@ -15,7 +15,7 @@ I have created a Spring MVC demo application to showcase the elegance and functi
 
 5.	Right click your project, click Run as -> **Run on server** (Supposing you already have a Tomcat server setup locally)  
 
-6.  Navigate to the following URI to access the application:  **http://localhost:8080/springmvc-demo**
+6.  Navigate to the following URL to access the application:  **http://localhost:8080/springmvc-demo**
 
 
 ### Admin privileges ###
