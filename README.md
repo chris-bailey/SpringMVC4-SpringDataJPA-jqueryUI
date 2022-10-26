@@ -1,9 +1,8 @@
-Spring MVC Demo
-===============
+# Spring MVC Demo
+
 
 I have created a Spring MVC demo application to showcase the elegance and functionality of the framework.  It is a simple application that utilizes Spring MVC 4 + Spring Data JPA + jQuery UI as well as many other useful technologies.
 
-If interested, please see the [Spring MVC Demo Page](http://chrisbaileydeveloper.com/projects/springmvc/) on my website where I showcase the application.
 
 ## Steps to set up development environment in Eclipse ##
 1. **Download** or clone the project from GitHub.  
@@ -27,4 +26,4 @@ This will allow you to login and make changes.
 Windows 7 64bit, Eclipse Java EE IDE Luna 4.4.1, Maven 3.1.0
 
 ### Author ###
-[Chris Bailey](http://www.chrisbaileydeveloper.com)
+ Chris Bailey 
